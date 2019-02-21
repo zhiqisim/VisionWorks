@@ -1,5 +1,8 @@
 package com.zhiqisim.visionworks;
 
+import java.util.Date;
+import java.text.SimpleDateFormat;
+
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -25,9 +28,13 @@ public class LogsAdapter extends FirestoreRecyclerAdapter<Logs, LogsAdapter.Logs
 
     @Override
     protected void onBindViewHolder(@NonNull LogsHolder holder, int position, @NonNull Logs model) {
+        long unixTime = model.getTime();
+        Date date = new java.util.Date(unixTime*1000L);
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+        String formattedDate = sdf.format(date);
         holder.textViewLicense.setText(model.getLicense());
         holder.textViewName.setText(model.getName());
-        holder.textViewDate.setText(String.valueOf(model.getTime()));
+        holder.textViewDate.setText(formattedDate);
         holder.textViewPurpose.setText(model.getPurpose());
         holder.textViewChecked.setText(String.valueOf(model.isChecked()));
     }
