@@ -37,7 +37,7 @@ public class HomeActivity extends AppCompatActivity {
         buttonAddNote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(HomeActivity.this, SignInActivity.class));
+                startActivity(new Intent(HomeActivity.this, CameraActivity.class));
             }
         });
     }
