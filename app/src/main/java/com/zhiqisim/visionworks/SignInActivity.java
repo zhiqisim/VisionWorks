@@ -1,5 +1,6 @@
 package com.zhiqisim.visionworks;
 
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,16 +20,18 @@ public class SignInActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
+        final String licensePlate = getIntent().getStringExtra("String");
         editTextName = findViewById(R.id.edit_text_name);
         editTextLicense = findViewById(R.id.edit_text_license);
         editTextPurpose = findViewById(R.id.edit_text_purpose);
-        FloatingActionButton buttonAddNote = findViewById(R.id.button_save);
-        buttonAddNote.setOnClickListener(new View.OnClickListener() {
+        FloatingActionButton buttonAddLog = findViewById(R.id.button_save);
+        buttonAddLog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 signIn();
             }
         });
+        editTextLicense.setText(licensePlate);
     }
 
     private boolean signIn() {
@@ -46,7 +49,8 @@ public class SignInActivity extends AppCompatActivity {
                 .collection("LogBook");
         notebookRef.add(new Logs(name, purpose, unixTime, false, license));
         Toast.makeText(this, "Sign-in recorded", Toast.LENGTH_SHORT).show();
-        finish();
+        Intent intent = new Intent(SignInActivity.this, HomeActivity.class);
+        startActivity(intent);
         return true;
     }
 }

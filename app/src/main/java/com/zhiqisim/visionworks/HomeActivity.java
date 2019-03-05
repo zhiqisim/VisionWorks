@@ -33,8 +33,8 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         setUpRecyclerView();
         mAuth = FirebaseAuth.getInstance();
-        FloatingActionButton buttonAddNote = findViewById(R.id.button_sign_in);
-        buttonAddNote.setOnClickListener(new View.OnClickListener() {
+        FloatingActionButton buttonAddLog = findViewById(R.id.button_sign_in);
+        buttonAddLog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(HomeActivity.this, CameraActivity.class));
