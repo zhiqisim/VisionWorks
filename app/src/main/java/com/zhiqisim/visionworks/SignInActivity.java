@@ -9,12 +9,14 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class SignInActivity extends AppCompatActivity {
     private EditText editTextName;
     private EditText editTextLicense;
     private EditText editTextPurpose;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,17 +41,17 @@ public class SignInActivity extends AppCompatActivity {
         String license = editTextLicense.getText().toString();
         String purpose = editTextPurpose.getText().toString();
         long unixTime = System.currentTimeMillis() / 1000L;
+        String strTime = Long.toString(unixTime);
 
         if (name.trim().isEmpty() || license.trim().isEmpty() || purpose.trim().isEmpty()) {
             Toast.makeText(this, "Please insert a name, license and purpose", Toast.LENGTH_SHORT).show();
             return false;
         }
-
-        CollectionReference notebookRef = FirebaseFirestore.getInstance()
-                .collection("LogBook");
-        notebookRef.add(new Logs(name, purpose, unixTime, false, license));
+        String outTime = "NOT EXIT";
+        db.collection("LogBook").document(strTime).set(new Logs(name, purpose, unixTime, license, outTime));
         Toast.makeText(this, "Sign-in recorded", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(SignInActivity.this, HomeActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         return true;
     }

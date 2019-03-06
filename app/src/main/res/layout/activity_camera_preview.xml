@@ -16,6 +16,8 @@
         android:hint="License Plate"
         android:textAllCaps="true"
         android:inputType="textCapCharacters"
+        android:singleLine = "true"
+        android:maxLines="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>

@@ -4,18 +4,19 @@ public class Logs {
     private String name;
     private String purpose;
     private long time;
-    private boolean checked;
+    private String outTime;
     private String license;
+
 
     public Logs() {
         //empty constructor needed
     }
 
-    public Logs(String name, String purpose, long time, boolean checked, String license) {
+    public Logs(String name, String purpose, long time, String license, String outTime) {
         this.name = name;
         this.purpose = purpose;
         this.time = time;
-        this.checked = checked;
+        this.outTime = outTime;
         this.license = license;
     }
 
@@ -31,8 +32,8 @@ public class Logs {
         return time;
     }
 
-    public boolean isChecked() {
-        return checked;
+    public String getOutTime() {
+        return outTime;
     }
 
     public String getLicense() {
