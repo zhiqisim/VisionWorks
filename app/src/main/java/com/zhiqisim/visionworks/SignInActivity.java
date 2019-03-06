@@ -5,18 +5,19 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.Spinner;
 
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class SignInActivity extends AppCompatActivity {
+public class SignInActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private EditText editTextName;
     private EditText editTextLicense;
-    private EditText editTextPurpose;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private String purpose;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +26,12 @@ public class SignInActivity extends AppCompatActivity {
         final String licensePlate = getIntent().getStringExtra("String");
         editTextName = findViewById(R.id.edit_text_name);
         editTextLicense = findViewById(R.id.edit_text_license);
-        editTextPurpose = findViewById(R.id.edit_text_purpose);
+        Spinner spinnerPurpose = findViewById(R.id.spinner_purpose);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.purpose, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerPurpose.setAdapter(adapter);
+        spinnerPurpose.setOnItemSelectedListener(this);
         FloatingActionButton buttonAddLog = findViewById(R.id.button_save);
         buttonAddLog.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,10 +42,19 @@ public class SignInActivity extends AppCompatActivity {
         editTextLicense.setText(licensePlate);
     }
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        purpose = parent.getItemAtPosition(position).toString();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
     private boolean signIn() {
         String name = editTextName.getText().toString();
         String license = editTextLicense.getText().toString();
-        String purpose = editTextPurpose.getText().toString();
         long unixTime = System.currentTimeMillis() / 1000L;
         String strTime = Long.toString(unixTime);
 

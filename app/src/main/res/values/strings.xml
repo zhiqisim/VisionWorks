@@ -4,4 +4,9 @@
     <string name="title_sign_in">Sign-In</string>
     <string name="title_log_book">Log Book</string>
     <string name="title_sign_out">Sign-Out</string>
+    <string-array name="purpose">
+        <item>Drop-off</item>
+        <item>Taxi / Private Hire</item>
+        <item>Visiting</item>
+    </string-array>
 </resources>
