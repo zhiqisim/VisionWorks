@@ -1,5 +1,5 @@
 # VisionWorks
-VisionWorks is a computer vision application to help the logging process of vehicles going in and out of private compounds. The application aims to enhance security in private compounds and help security guards and security company better secure logging data. Using Google Vision, the car plate number can be scanned by an android phone camera to be recorded.
+VisionWorks is a computer vision application to help the logging process of vehicles going in and out of private compounds. The application aims to enhance security in private compounds and help security guards and security company better secure logging data. Using Google Mobile Vision, the car plate number can be scanned by an android phone camera to be recorded.
 
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a android phone.
