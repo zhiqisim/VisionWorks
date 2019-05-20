@@ -13,12 +13,21 @@ import android.widget.Spinner;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 
+/**
+ * SignInActivity class holding the business logic of recording of information
+ * for the entry and controlling the activity_sign_in UI
+ */
 public class SignInActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private EditText editTextName;
     private EditText editTextLicense;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private String purpose;
 
+    /**
+     * Initializes the UI and allows user to enter other information
+     * about the entry to record such as name and purpose of visit
+     * License number is brought over from previous page
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +51,9 @@ public class SignInActivity extends AppCompatActivity implements AdapterView.OnI
         editTextLicense.setText(licensePlate);
     }
 
+    /**
+     * Initializes the spinner to restrict users from typing any errors
+     */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         purpose = parent.getItemAtPosition(position).toString();
@@ -52,6 +64,10 @@ public class SignInActivity extends AppCompatActivity implements AdapterView.OnI
 
     }
 
+    /**
+     * Function to save information of entry to database by using the Log class entity
+     * Called when "Save" button is pressed
+     */
     private boolean signIn() {
         String name = editTextName.getText().toString();
         String license = editTextLicense.getText().toString();

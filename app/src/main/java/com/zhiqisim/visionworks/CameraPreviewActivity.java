@@ -24,19 +24,23 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * CameraPreview activity class holding the business logic of the preview for the text captured and controlling the activity_camera_preview UI
+ */
 public class CameraPreviewActivity extends AppCompatActivity {
     private EditText editTextLicense;
-    private Button retakeBtn;
-    private Button nextBtn;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private static final String TAG = "CameraPreviewActivity";
 
+    /**
+     * Initializes the UI and allows user to retake or proceed depending on preview text captured
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera_preview);
-        retakeBtn = findViewById(R.id.button_retake);
-        nextBtn = findViewById(R.id.button_next);
+        Button retakeBtn = findViewById(R.id.button_retake);
+        Button nextBtn = findViewById(R.id.button_next);
         editTextLicense = findViewById(R.id.license_verification);
         String licensePlate = getIntent().getStringExtra("String");
         licensePlate = licensePlate.replaceAll("\\s","");
@@ -56,6 +60,11 @@ public class CameraPreviewActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Function to proceed to the next page
+     * Updates current entry if license number exist in database and have not exit compound to record exit
+     * Proceed to next page to record other information if license not in database
+     */
     private void next() {
         CollectionReference colRef = db.collection("LogBook");
         Query query = colRef.whereEqualTo("license", editTextLicense.getText().toString()).whereEqualTo("outTime", "NOT EXIT");;

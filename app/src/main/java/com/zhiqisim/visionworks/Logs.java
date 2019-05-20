@@ -1,5 +1,8 @@
 package com.zhiqisim.visionworks;
 
+/**
+ * Logs entity class holding the entity object for each entry record to be stored in database
+ */
 public class Logs {
     private String name;
     private String purpose;
@@ -9,7 +12,7 @@ public class Logs {
 
 
     public Logs() {
-        //empty constructor needed
+        // empty constructor needed
     }
 
     public Logs(String name, String purpose, long time, String license, String outTime) {

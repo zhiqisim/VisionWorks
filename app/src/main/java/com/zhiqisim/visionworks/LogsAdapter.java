@@ -13,6 +13,10 @@ import android.widget.TextView;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 
+/**
+ * LogsAdapter class holding the business logic of the recycler view contained in HomeActivity class
+ * Obtains data from database and fills recycler view entries with relevant data from database using Logs entity
+ */
 public class LogsAdapter extends FirestoreRecyclerAdapter<Logs, LogsAdapter.LogsHolder> {
     public LogsAdapter(@NonNull FirestoreRecyclerOptions<Logs> options) {
         super(options);

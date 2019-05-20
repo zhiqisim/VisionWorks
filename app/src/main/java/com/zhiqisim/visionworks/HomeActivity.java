@@ -19,7 +19,9 @@ import com.google.firebase.firestore.Query;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-
+/**
+ * HomeActivity class holding the business logic of the preview for all the logbook records and controlling the activity_home UI
+ */
 public class HomeActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -27,6 +29,9 @@ public class HomeActivity extends AppCompatActivity {
 
     private LogsAdapter adapter;
 
+    /**
+     * Initializes the UI and allows user to enter an entry
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +47,9 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Initializes the recycler view for viewing of each log entries in a list
+     */
     private void setUpRecyclerView() {
         Query query = logbookRef.orderBy("time", Query.Direction.DESCENDING);
 
